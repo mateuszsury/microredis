@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+nul
+
+# Claude Code artifacts
+.claude/
+
+# Planning/generation artifacts (root level)
+/plan.md
+/CONNECTION_HANDLER_SUMMARY.md
+/EXPIRY_DESIGN.md
+/EXPIRY_INTEGRATION.md
+/RESPONSE_IMPLEMENTATION_SUMMARY.md
+/RESPONSE_PERFORMANCE.md
+/RESPONSE_QUICKSTART.md
+
+# MicroPython compiled
+*.mpy
+
+# Persistence data
+*.mrdb
+*.rdb
