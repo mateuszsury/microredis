@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <linearGradient id="arch-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0c29"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="box-net" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#162d50"/>
+    </linearGradient>
+    <linearGradient id="box-core" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5c1a1a"/>
+      <stop offset="100%" stop-color="#3d1212"/>
+    </linearGradient>
+    <linearGradient id="box-store" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a1a"/>
+      <stop offset="100%" stop-color="#122d12"/>
+    </linearGradient>
+    <linearGradient id="box-feat" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a1a5c"/>
+      <stop offset="100%" stop-color="#2d1250"/>
+    </linearGradient>
+    <linearGradient id="box-persist" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5c4a1a"/>
+      <stop offset="100%" stop-color="#3d3212"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="520" rx="12" fill="url(#arch-bg)"/>
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="bold" fill="#e0e0e0">Architecture</text>
+
+  <!-- Client layer -->
+  <g transform="translate(50, 55)">
+    <rect width="700" height="50" rx="8" fill="#0d1b2a" stroke="#2d4059" stroke-width="1.5"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#4a6fa5" font-weight="bold">CLIENTS</text>
+    <g transform="translate(20, 28)">
+      <rect width="90" height="18" rx="4" fill="#1e3a5f" opacity="0.6"/>
+      <text x="45" y="13" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">redis-cli</text>
+    </g>
+    <g transform="translate(120, 28)">
+      <rect width="90" height="18" rx="4" fill="#1e3a5f" opacity="0.6"/>
+      <text x="45" y="13" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">redis-py</text>
+    </g>
+    <g transform="translate(220, 28)">
+      <rect width="90" height="18" rx="4" fill="#1e3a5f" opacity="0.6"/>
+      <text x="45" y="13" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">ioredis</text>
+    </g>
+    <g transform="translate(320, 28)">
+      <rect width="120" height="18" rx="4" fill="#1e3a5f" opacity="0.6"/>
+      <text x="60" y="13" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">any RESP2 client</text>
+    </g>
+    <text x="600" y="38" font-family="monospace" font-size="10" fill="#4a6fa5">TCP :6379 (max 8)</text>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="110" x2="400" y2="130" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6fa5"/></marker></defs>
+
+  <!-- Network Layer -->
+  <g transform="translate(50, 130)">
+    <rect width="700" height="75" rx="8" fill="url(#box-net)" stroke="#2d6ea7" stroke-width="1.5"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#5b9bd5" font-weight="bold">NETWORK</text>
+    <g transform="translate(20, 30)">
+      <rect width="130" height="35" rx="6" fill="#0d1b2a" stroke="#2d4059" stroke-width="1"/>
+      <text x="65" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">connection.py</text>
+      <text x="65" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">async TCP handler</text>
+    </g>
+    <g transform="translate(165, 30)">
+      <rect width="130" height="35" rx="6" fill="#0d1b2a" stroke="#2d4059" stroke-width="1"/>
+      <text x="65" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">router.py</text>
+      <text x="65" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">100 cmd dispatch</text>
+    </g>
+    <g transform="translate(310, 30)">
+      <rect width="130" height="35" rx="6" fill="#0d1b2a" stroke="#2d4059" stroke-width="1"/>
+      <text x="65" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">middleware.py</text>
+      <text x="65" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">auth + rate limit</text>
+    </g>
+    <g transform="translate(455, 30)">
+      <rect width="120" height="35" rx="6" fill="#0d1b2a" stroke="#2d4059" stroke-width="1"/>
+      <text x="60" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">protocol.py</text>
+      <text x="60" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">RESP2 parser</text>
+    </g>
+    <g transform="translate(590, 30)">
+      <rect width="95" height="35" rx="6" fill="#0d1b2a" stroke="#2d4059" stroke-width="1"/>
+      <text x="47" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">pool.py</text>
+      <text x="47" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">conn pool</text>
+    </g>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="210" x2="400" y2="230" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Middle row: Commands + Features -->
+  <g transform="translate(50, 230)">
+    <!-- Commands -->
+    <rect width="340" height="95" rx="8" fill="url(#box-core)" stroke="#a73b2d" stroke-width="1.5"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#e06050" font-weight="bold">COMMANDS</text>
+    <g transform="translate(15, 30)">
+      <rect width="95" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="47" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">string.py</text>
+    </g>
+    <g transform="translate(118, 30)">
+      <rect width="70" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="35" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">hash.py</text>
+    </g>
+    <g transform="translate(196, 30)">
+      <rect width="60" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="30" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">list.py</text>
+    </g>
+    <g transform="translate(264, 30)">
+      <rect width="60" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="30" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">set.py</text>
+    </g>
+    <g transform="translate(15, 58)">
+      <rect width="70" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="35" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">zset.py</text>
+    </g>
+    <g transform="translate(93, 58)">
+      <rect width="90" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="45" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">bitmaps.py</text>
+    </g>
+    <g transform="translate(191, 58)">
+      <rect width="75" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="37" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">hll.py</text>
+    </g>
+    <g transform="translate(274, 58)">
+      <rect width="50" height="22" rx="4" fill="#1a0d0d" opacity="0.8"/>
+      <text x="25" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">streams</text>
+    </g>
+
+    <!-- Features -->
+    <g transform="translate(360, 0)">
+      <rect width="340" height="95" rx="8" fill="url(#box-feat)" stroke="#7b2da7" stroke-width="1.5"/>
+      <text x="20" y="20" font-family="monospace" font-size="11" fill="#b060e0" font-weight="bold">FEATURES</text>
+      <g transform="translate(15, 30)">
+        <rect width="145" height="22" rx="4" fill="#1a0d1a" opacity="0.8"/>
+        <text x="72" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">pubsub.py (glob match)</text>
+      </g>
+      <g transform="translate(170, 30)">
+        <rect width="155" height="22" rx="4" fill="#1a0d1a" opacity="0.8"/>
+        <text x="77" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">transaction.py (WATCH)</text>
+      </g>
+      <g transform="translate(15, 58)">
+        <rect width="145" height="22" rx="4" fill="#1a0d1a" opacity="0.8"/>
+        <text x="72" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">middleware (auth+RL)</text>
+      </g>
+      <g transform="translate(170, 58)">
+        <rect width="155" height="22" rx="4" fill="#1a0d1a" opacity="0.8"/>
+        <text x="77" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#c0c0c0">memory.py (LRU evict)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="330" x2="400" y2="350" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Storage Layer -->
+  <g transform="translate(50, 350)">
+    <rect width="430" height="75" rx="8" fill="url(#box-store)" stroke="#2da74b" stroke-width="1.5"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#50e070" font-weight="bold">STORAGE ENGINE</text>
+    <g transform="translate(15, 30)">
+      <rect width="125" height="35" rx="6" fill="#0d1a0d" stroke="#1a3a1a" stroke-width="1"/>
+      <text x="62" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">engine.py</text>
+      <text x="62" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">dict + TTL + types</text>
+    </g>
+    <g transform="translate(155, 30)">
+      <rect width="125" height="35" rx="6" fill="#0d1a0d" stroke="#1a3a1a" stroke-width="1"/>
+      <text x="62" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">expiry.py</text>
+      <text x="62" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">lazy + active GC</text>
+    </g>
+    <g transform="translate(295, 30)">
+      <rect width="120" height="35" rx="6" fill="#0d1a0d" stroke="#1a3a1a" stroke-width="1"/>
+      <text x="60" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">memory.py</text>
+      <text x="60" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">LRU/random evict</text>
+    </g>
+  </g>
+
+  <!-- Persistence Layer -->
+  <g transform="translate(500, 350)">
+    <rect width="250" height="75" rx="8" fill="url(#box-persist)" stroke="#a79b2d" stroke-width="1.5"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#e0c050" font-weight="bold">PERSISTENCE</text>
+    <g transform="translate(15, 30)">
+      <rect width="105" height="35" rx="6" fill="#1a170d" stroke="#3a3012" stroke-width="1"/>
+      <text x="52" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">snapshot.py</text>
+      <text x="52" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">MicroRDB</text>
+    </g>
+    <g transform="translate(130, 30)">
+      <rect width="105" height="35" rx="6" fill="#1a170d" stroke="#3a3012" stroke-width="1"/>
+      <text x="52" y="15" text-anchor="middle" font-family="monospace" font-size="10" fill="#8892b0">flash.py</text>
+      <text x="52" y="28" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a6fa5">wear leveling</text>
+    </g>
+  </g>
+
+  <!-- Bottom: Hardware -->
+  <g transform="translate(50, 455)">
+    <rect width="700" height="50" rx="8" fill="#0d1b2a" stroke="#2d4059" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="20" y="20" font-family="monospace" font-size="11" fill="#4a6fa5" font-weight="bold">HARDWARE</text>
+    <text x="20" y="38" font-family="monospace" font-size="10" fill="#8892b0">ESP32-S3 + SPIRAM 8MB  |  MicroPython  |  WiFi 802.11 b/g/n  |  4MB Flash</text>
+  </g>
+
+  <!-- Arrow storage to hardware -->
+  <line x1="300" y1="430" x2="300" y2="455" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="625" y1="430" x2="625" y2="455" stroke="#4a6fa5" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
