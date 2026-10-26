@@ -43,3 +43,7 @@ nul
 # Persistence data
 *.mrdb
 *.rdb
+
+# Generated development files
+.pytest_cache/
+.ruff_cache/
