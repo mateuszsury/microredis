@@ -28,7 +28,7 @@ class MockCommandRouter:
         self.storage = storage
         self.executed_commands = []
 
-    def execute(self, cmd, args, connection):
+    def execute(self, cmd, args):
         """Execute command and track for verification."""
         self.executed_commands.append((cmd, args))
 
@@ -502,6 +502,20 @@ def test_multi_client_isolation():
     print("[OK] Multi-client isolation OK")
 
 
+def test_exec_with_real_router():
+    """Verify MULTI/EXEC against the actual command dispatch contract."""
+    from microredis.network.router import CommandRouter
+    storage = Storage()
+    router = CommandRouter(storage)
+    txn = TransactionManager(storage)
+    conn = MockConnection(1)
+    assert txn.multi(conn) == RESP_OK
+    for command, args in [(b'SET', [b'counter', b'1']), (b'INCR', [b'counter']), (b'GET', [b'counter'])]:
+        assert txn.queue_command(conn, command, args, router=router) == RESP_QUEUED
+    assert txn.exec(conn, router) == b'*3\r\n+OK\r\n:2\r\n$1\r\n2\r\n'
+    assert storage.get(b'counter') == b'2'
+
+
 def run_all_tests():
     """Run all transaction tests."""
     print("=" * 60)
@@ -518,6 +532,7 @@ def run_all_tests():
     test_queue_forbidden_commands()
     test_exec_without_multi()
     test_exec_success()
+    test_exec_with_real_router()
     test_exec_watch_conflict()
     test_exec_with_error_state()
     test_discard()

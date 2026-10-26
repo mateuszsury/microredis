@@ -102,7 +102,7 @@ git clone https://github.com/mateuszsury/microredis.git
 cd microredis
 
 # Run unit tests
-python microredis/tests/runner.py
+python -m microredis.tests.runner
 
 # Start server
 python -c "from microredis.main import run; run()"
@@ -355,7 +355,7 @@ server = MicroRedisServer('0.0.0.0', 6379)
 
 ```bash
 # Unit tests (74 tests, no server needed)
-python microredis/tests/runner.py
+python -m microredis.tests.runner
 
 # Integration tests (start server first)
 python -c "from microredis.main import run; run()" &
