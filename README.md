@@ -1,9 +1,11 @@
+# MicroRedis — Redis-style storage for MicroPython
+
 <p align="center">
   <img src="assets/banner.svg" alt="MicroRedis" width="800"/>
 </p>
 
 <p align="center">
-  <strong>A Redis-compatible server that fits in 300KB of RAM</strong>
+  <strong>An embedded Redis-style data store for MicroPython</strong>
 </p>
 
 <p align="center">
@@ -23,6 +25,14 @@
 </p>
 
 ---
+
+## Project overview
+
+An embedded Redis-style data store for MicroPython devices, including transactions and pub/sub.
+
+![MicroRedis — Command and storage overview. Host regression tests and microcontroller resource limits are documented separately.](docs/assets/presentation/overview.svg)
+
+Command and storage overview. Host regression tests and microcontroller resource limits are documented separately.
 
 ## Why MicroRedis?
 
